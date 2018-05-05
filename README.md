@@ -15,7 +15,7 @@ PyQt: for designing the GUI for the application
 ### How to use this utility:
 1. First, open up vocab_builder.py and change the paths of the file to suit your needs.
 
-2. Use PyInstaller to create an executable python file. The executable python file will be stored in the dist directory in your root project folder.
+2. Move the python executable file to usr/local/bin
 
 3. Using the linux terminal, copy over the generated executable to usr/local/bin.
 
