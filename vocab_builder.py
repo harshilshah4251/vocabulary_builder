@@ -2,6 +2,7 @@
 import sys
 import os
 import json
+import subprocess
 from PyQt5.Qt import QApplication, QClipboard
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QWidget, QPlainTextEdit, QLineEdit, QLabel, QPushButton
@@ -37,10 +38,16 @@ class ClipBoardWindow(QMainWindow):
         self.def_box = QPlainTextEdit(self)
         self.def_box.move(100,100)
         self.def_box.resize(280, 80)
-        #button
+        #submit_button
         self.submit_button = QPushButton('Submit', self)
-        self.submit_button.move(180, 200)  
+        self.submit_button.move(50, 200)  
         self.submit_button.clicked.connect(self.on_click_submit)
+
+        #open pdf button
+        self.pdf_button = QPushButton('Open vocab list', self)
+        self.pdf_button.move(220, 200)  
+        self.pdf_button.resize(150, 30)
+        self.pdf_button.clicked.connect(self.on_click_pdf)
 
         #get selected text and meaning
         self.selected_text = selected_text.lower()
@@ -126,6 +133,10 @@ class ClipBoardWindow(QMainWindow):
             PDFgenerator.generatePDF()
             print("Successfully added the word and its definition")
             sys.exit()
+    def on_click_pdf(self):
+        pdf_path = "/home/harshil/Harshil/projects/personal_projects/vocab_builder/vocab_list.pdf"
+        doc_viewer = '/usr/bin/evince'
+        os.system("%s %s" % (doc_viewer, pdf_path))
 
 
 class PDFgenerator():
